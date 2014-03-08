@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>aisa board</h1>
-<form action="index.php/new" method="POST">
+<form action="new" method="POST">
 <input type="text" name="text">
 <input type="submit" value="submit">
 </form>
