@@ -19,6 +19,9 @@
 <li>
 <p><?php echo htmlspecialchars($entry["text"]) ?></p>
 <p><?php echo htmlspecialchars($entry["datetime"]) ?></p>
+<form action="delete/<?php echo htmlspecialchars($entry["id"]) ?>" method="POST">
+<input type="submit" value="delete">
+</form>
 </li>
 <?php endforeach ?>
 </ul>

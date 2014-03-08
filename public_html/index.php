@@ -27,4 +27,12 @@ $app->post("/new", function () use ($app) {
     $app->redirect("/");
 });
 
+$app->post("/delete/:id", function ($id) use ($app) {
+    $entry = R::load("board", $id);
+    if ($entry) {
+        R::trash($entry);
+        $app->redirect("/");
+    }
+});
+
 $app->run();
