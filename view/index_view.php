@@ -6,6 +6,9 @@
 </head>
 <body>
 <h1>aisa board</h1>
+<?php if ($flash["message"]): ?>
+<p><?php echo htmlspecialchars($flash["message"]); ?></p>
+<?php endif; ?>
 <form action="new" method="POST">
 <input type="text" name="text">
 <input type="submit" value="submit">

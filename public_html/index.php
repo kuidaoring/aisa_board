@@ -9,6 +9,8 @@ $app = new \Slim\Slim(array(
     "templates.path" => VIEW_DIR,
 ));
 
+$app->add(new \Slim\Middleware\SessionCookie);
+
 R::setup(sprintf("mysql:host=%s;dbname=%s;charset=utf8", DB_HOST, DB_NAME), DB_USER, DB_PASSWORD);
 
 $app->get('/', function () use ($app) {
@@ -24,6 +26,7 @@ $app->post("/new", function () use ($app) {
     $newEntry->datetime = new \DateTime();
 
     R::store($newEntry);
+    $app->flash("message", "add entry!");
     $app->redirect("/");
 });
 
@@ -31,6 +34,7 @@ $app->post("/delete/:id", function ($id) use ($app) {
     $entry = R::load("board", $id);
     if ($entry) {
         R::trash($entry);
+        $app->flash("message", "delete entry!");
         $app->redirect("/");
     }
 });
